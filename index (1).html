@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCTAA - Healthcare Intelligence Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #b8b8b8;
+            background: linear-gradient(135deg, #050505 0%, #0f0f0f 50%, #0a1515 100%);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 168, 232, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #777;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #00a8e8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+            padding: 140px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 168, 232, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2.5px;
+            color: #00a8e8;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #ffffff;
+            line-height: 1.15;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #999;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #000;
+            padding: 16px 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #00a8e8;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 16px 50px;
+            border: 1px solid #555;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .btn-secondary:hover {
+            border-color: #00a8e8;
+            background-color: rgba(0, 168, 232, 0.05);
+        }
+
+        /* Framework Section */
+        .framework {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.5) 0%, rgba(15, 15, 15, 0.7) 100%);
+        }
+
+        .section-title {
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #00a8e8;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .section-heading {
+            font-size: 56px;
+            font-weight: 400;
+            margin-bottom: 80px;
+            color: #ffffff;
+            max-width: 800px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .framework-card {
+            background-color: rgba(0, 168, 232, 0.02);
+            padding: 50px;
+            border-radius: 0;
+            border: 1px solid rgba(0, 168, 232, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .framework-card:hover {
+            border-color: rgba(0, 168, 232, 0.4);
+            background-color: rgba(0, 168, 232, 0.05);
+        }
+
+        .framework-card h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00a8e8;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .framework-card p {
+            color: #888;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Platform Section */
+        .platform {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+        }
+
+        .platform-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .platform-text h2 {
+            font-size: 56px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .platform-text p {
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 15px 0;
+            color: #888;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .features-list li::before {
+            content: '•';
+            color: #00a8e8;
+            font-size: 20px;
+            margin-right: 20px;
+        }
+
+        .platform-image {
+            text-align: center;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.1) 0%, rgba(0, 168, 232, 0.05) 100%);
+            border: 1px solid rgba(0, 168, 232, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 16px;
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.5) 0%, rgba(15, 15, 15, 0.7) 100%);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .stat-card {
+            background-color: rgba(0, 168, 232, 0.05);
+            padding: 40px;
+            border-radius: 0;
+            text-align: center;
+            border: 1px solid rgba(0, 168, 232, 0.2);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00a8e8;
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+        }
+
+        .programs-list {
+            list-style: none;
+            max-width: 800px;
+        }
+
+        .programs-list li {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 17px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+        }
+
+        .programs-list li::before {
+            content: attr(data-number);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(0, 168, 232, 0.1);
+            margin-right: 30px;
+            font-weight: 600;
+            color: #777;
+            font-size: 13px;
+            border: 1px solid rgba(0, 168, 232, 0.2);
+            flex-shrink: 0;
+        }
+
+        .programs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .view-all {
+            margin-top: 40px;
+            color: #00a8e8;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Quote Section */
+        .quote {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.5) 0%, rgba(15, 15, 15, 0.7) 100%);
+            text-align: center;
+        }
+
+        .quote h2 {
+            font-size: 56px;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .quote-text {
+            color: #888;
+            font-size: 16px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            text-align: center;
+        }
+
+        .leader-avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(0, 168, 232, 0.2) 0%, rgba(0, 168, 232, 0.05) 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(0, 168, 232, 0.3);
+            font-size: 60px;
+            color: #00a8e8;
+        }
+
+        .leader-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .leader-title {
+            font-size: 14px;
+            color: #00a8e8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .leader-bio {
+            font-size: 15px;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.5) 0%, rgba(15, 15, 15, 0.7) 100%);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .trust-stat h3 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .trust-stat p {
+            color: #777;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 56px;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 60px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            color: #666;
+            padding: 80px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 168, 232, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: #555;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .footer-nav a:hover {
+            color: #00a8e8;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            color: #444;
+            font-size: 12px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 65px;
+            height: 65px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-btn svg {
+            width: 36px;
+            height: 36px;
+            fill: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+            .platform-content {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+            .leadership-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero {
+                padding: 80px 30px;
+            }
+            .hero h1 {
+                font-size: 42px;
+            }
+            .section-heading {
+                font-size: 36px;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 80px 30px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">OCTAA</div>
+        <nav>
+            <a href="#platform">Platform</a>
+            <a href="#programs">Programs</a>
+            <a href="#partner">Partner</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">OCTAA Healthcare Intelligence</p>
+            <h1>Healthcare, Reimagined.</h1>
+            <p>Building healthcare professionals who are skilled, ethical, adaptive and truly prepared for the real world.</p>
+            <div class="cta-buttons">
+                <button class="btn-primary">Explore OCTAA</button>
+                <button class="btn-secondary">Partner with OCTAA</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section class="framework">
+        <p class="section-title">THE OCTAA FRAMEWORK</p>
+        <h2 class="section-heading">Eight dimensions of a complete healthcare professional.</h2>
+        
+        <div class="framework-grid">
+            <div class="framework-card">
+                <h3>Ethical</h3>
+                <p>Grounded in integrity and moral clarity</p>
+            </div>
+            <div class="framework-card">
+                <h3>Clinical</h3>
+                <p>Competent, precise, evidence-based</p>
+            </div>
+            <div class="framework-card">
+                <h3>Technical</h3>
+                <p>Fluent in the tools of modern healthcare</p>
+            </div>
+            <div class="framework-card">
+                <h3>Analytical</h3>
+                <p>Data-driven decision making</p>
+            </div>
+            <div class="framework-card">
+                <h3>Adaptive</h3>
+                <p>Resilient in complexity and change</p>
+            </div>
+            <div class="framework-card">
+                <h3>Empathetic</h3>
+                <p>Human-centered in every interaction</p>
+            </div>
+            <div class="framework-card">
+                <h3>Professional</h3>
+                <p>Prepared for institutional expectations</p>
+            </div>
+            <div class="framework-card">
+                <h3>Transformative</h3>
+                <p>A force for systemic improvement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="platform" id="platform">
+        <p class="section-title">THE PLATFORM</p>
+        <div class="platform-content">
+            <div class="platform-text">
+                <h2>More than training. An intelligence platform.</h2>
+                <p>OCTAA integrates AI-powered learning, workforce analytics, and institutional compliance into a single operating system for healthcare organisations.</p>
+                <ul class="features-list">
+                    <li>AI-powered learning</li>
+                    <li>Workforce development</li>
+                    <li>Hospital operations</li>
+                    <li>Compliance</li>
+                    <li>Upskilling</li>
+                    <li>Analytics</li>
+                    <li>AI assistants</li>
+                    <li>Decision support</li>
+                </ul>
+            </div>
+            <div class="platform-image">Healthcare Operations Dashboard</div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <p class="section-title">OCTAA INTELLIGENCE OS</p>
+        <h2 class="section-heading">Real-time insights for better outcomes.</h2>
+        
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-number">2,847</div>
+                <div class="stat-label">Active Learners</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">94.2%</div>
+                <div class="stat-label">Completion Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">87.6</div>
+                <div class="stat-label">Avg Readiness</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <p class="section-title">PROGRAMS</p>
+        <h2 class="section-heading">Programs built for the real world of healthcare.</h2>
+        <p style="color: #999; margin-bottom: 60px; font-size: 16px;">For nurses, allied health professionals, hospital staff, interns and fresh graduates.</p>
+        
+        <ul class="programs-list">
+            <li data-number="01">Professional Behaviour</li>
+            <li data-number="02">Communication</li>
+            <li data-number="03">Ethics</li>
+            <li data-number="04">Patient-Centricity</li>
+            <li data-number="05">Emotional Intelligence</li>
+            <li data-number="06">Listening</li>
+            <li data-number="07">Assertiveness</li>
+            <li data-number="08">Mindset</li>
+            <li data-number="09">Corporate Readiness</li>
+            <li data-number="10">Multicultural Teamwork</li>
+        </ul>
+        
+        <a href="#" class="view-all">View all programs →</a>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote">
+        <h2>"Qualification is not preparation."</h2>
+        <p class="quote-text">Academic credentials confirm what a professional knows. They say nothing about how they behave under pressure, how they communicate with patients, or how they navigate the complex social dynamics of a hospital ward.</p>
+        <p class="quote-text">OCTAA exists in the space between knowledge and readiness. We develop the professional identity, behavioural competencies, and adaptive intelligence that institutions need — and that textbooks cannot teach.</p>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership">
+        <p class="section-title">LEADERSHIP</p>
+        <h2 class="section-heading">Built by practitioners, for practitioners.</h2>
+        
+        <div class="leadership-grid">
+            <div class="leader-card">
+                <div class="leader-avatar">P</div>
+                <div class="leader-name">Priyanka Edupuganti</div>
+                <div class="leader-title">Founder & CEO</div>
+                <div class="leader-bio">Clinical expertise, strategic vision, and deep commitment to transforming healthcare education.</div>
+            </div>
+            <div class="leader-card">
+                <div class="leader-avatar">J</div>
+                <div class="leader-name">Jay Parvathaneni</div>
+                <div class="leader-title">Co-Founder</div>
+                <div class="leader-bio">Learning science and technology innovation driving the platform's intelligent core.</div>
+            </div>
+            <div class="leader-card">
+                <div class="leader-avatar">S</div>
+                <div class="leader-name">Sri Harsha Parvathaneni</div>
+                <div class="leader-title">Co-Founder</div>
+                <div class="leader-bio">Healthcare operations and institutional partnerships building sustainable growth.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <p class="section-title">TRUSTED BY INSTITUTIONS</p>
+        
+        <div class="trust-grid">
+            <div class="trust-stat">
+                <h3>10,000+</h3>
+                <p>Professionals Trained</p>
+            </div>
+            <div class="trust-stat">
+                <h3>40+</h3>
+                <p>Hospital Partners</p>
+            </div>
+            <div class="trust-stat">
+                <h3>8</h3>
+                <p>Framework Dimensions</p>
+            </div>
+            <div class="trust-stat">
+                <h3>95%</h3>
+                <p>Readiness Score Improvement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Prepare for what healthcare demands next.</h2>
+        <div class="cta-buttons">
+            <button class="btn-primary">Explore OCTAA</button>
+            <button class="btn-secondary">Partner with OCTAA</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">OCTAA</div>
+        <div class="footer-nav">
+            <a href="#platform">Platform</a>
+            <a href="#programs">Programs</a>
+            <a href="#partner">Partner</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="footer-bottom">
+            © 2026 OCTAA Healthcare. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/918121399669?text=Hi%20OCTAA%20team" class="whatsapp-btn" title="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.082.402-2.847 1.12-.735.707-1.143 1.649-1.143 2.678 0 1.029.408 1.971 1.143 2.678.765.718 1.795 1.12 2.847 1.12h.004c1.052 0 2.082-.402 2.847-1.12.735-.707 1.143-1.649 1.143-2.678 0-1.029-.408-1.971-1.143-2.678-.765-.718-1.795-1.12-2.847-1.12m5.847-1.12C15.728 2.852 12.766 1 9.504 1 5.037 1 1.422 4.615 1.422 9.082c0 1.614.406 3.193 1.176 4.589L1.24 22.501l5.115-1.678c1.326.766 2.835 1.171 4.363 1.171h4.026c4.467 0 8.082-3.615 8.082-8.082 0-2.136-.831-4.143-2.341-5.652"/>
+        </svg>
+    </a>
+
+    <script>
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                const target = this.getAttribute('href');
+                if (target && target.startsWith('#')) {
+                    const element = document.querySelector(target);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const element = document.querySelector(href);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
